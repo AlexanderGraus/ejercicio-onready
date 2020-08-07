@@ -38,19 +38,30 @@ cargarAutos = () =>{
   vehiculos.push(new Moto('Honda','Titan',125,60000));
   vehiculos.push(new Auto('Peugeot','208',5,250000));
   vehiculos.push(new Moto('Yamaha','YBR',160,80500.50));
+  return vehiculos;
 }
 
 ordenarAutos = () =>{
   vehiculos.sort((auto1,auto2)=>{
     return auto2.precio - auto1.precio;
+    //ordena los vehiculos del mas caro al mas barato
   });
 }
 
+buscarModeloY = () =>{
+  return vehiculos.find(auto => auto.modelo.includes('Y'));
+  
+}
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  
   cargarAutos();
   ordenarAutos();
-  console.log(vehiculos);
+  let autoY = buscarModeloY();
+ 
   res.end();
 });
 
